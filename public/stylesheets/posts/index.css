@@ -1,0 +1,28 @@
+.post-card {
+  border: 1px solid lime;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+button {
+  background-color: lime;
+  color: #1a1a1a;
+  font-weight: bold;
+  width: 105px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+}
+
