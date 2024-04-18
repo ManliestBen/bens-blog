@@ -35,3 +35,23 @@ button {
   background-color: orange;
   margin-left: 16px;
 }
+
+.delete-button {
+  margin-bottom: 24px;
+}
+
+.comment-button {
+  background-color: lightskyblue;
+  margin-top: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.author-image {
+  width: 30px;
+  height: 30px;
+}

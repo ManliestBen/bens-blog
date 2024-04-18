@@ -1,0 +1,52 @@
+<%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/posts/show.css">
+<%- include('../partials/nav') %>
+
+
+<h1><%= title %></h1>
+
+<div class="post-container">
+
+  <div class="post-card">
+    <h2><%= post.title %> - posted by <img src="<%= post.author.avatar %>" alt="profile image for user"><%= post.author.name %></h2>
+    <p><%= post.content %></p>
+    <!-- if the author's _id matches the _id of the logged in user's profile, display the delete button -->
+    <div class="button-container">
+      <% if (post.author._id.equals(user.profile._id)) { %>
+        <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+          <button class="delete-button">Delete 🗑️</button>
+        </form>
+      <% } %>
+    </div>
+    <form method="POST" action="/posts/<%= post._id %>/comments">
+      <textarea type="text" name="content" placeholder="Leave a comment..."></textarea>
+      <button type="submit" class="comment-button">Add Comment</button>
+    </form>
+    <% if (post.comments.length) { %>
+      <h3>Comments</h3>
+      <ul>
+        <% post.comments.forEach(comment => { %>
+          <li>
+            <%= comment.content %> - 
+            <img 
+              class="author-image" 
+              src="<%= comment.author.avatar %>" 
+              alt="avatar of comment author"
+            >
+            <%= comment.author.name %> 
+            <% if (comment.author._id.equals(user.profile._id)) { %>
+              <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                <button type="submit">🗑️</button>
+              </form> 
+            <% } %>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <h3>There are no comments yet</h3>
+    <% } %>
+  </div>
+</div>
+
+
+<%- include('../partials/footer') %>
